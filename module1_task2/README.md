@@ -8,3 +8,7 @@
 - [Go Hugo](https://gohugo.io/) v0.80+
 
 ## Lifecycle
+- clean
+- build
+- help
+- post
