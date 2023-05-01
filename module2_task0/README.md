@@ -1,5 +1,6 @@
 ## Prerequisites
-1;95;0c## Lifecycle
+
+## Lifecycle
 
 - build: compile the source code of the application to a binary named awesome-api (the name awesome-api comes from the command go mod init github.com/<your github handle>/awesome-api) with the command go build. The first build may takes some times.
 
