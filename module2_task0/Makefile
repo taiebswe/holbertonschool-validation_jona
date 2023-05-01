@@ -1,19 +1,26 @@
 GO=go
 TARGET=awesome-api
 RM=rm -f
+MAKE=make
 
-build:
+build:	## Generate the source code of the application to a binary.
 	$(GO) mod tidy
 	$(GO) build -o $(TARGET)
 
-run:
+run:	## Run the application in background by executing the binary.
 	./$(TARGET) >./$(TARGET).log 2>&1 &
 
-stop:
-	pkill $(TARGET)
+stop:	## Stop the application.
+	@pkill $(TARGET)
 
-clean:
-	$(RM) $(TARGET) $(TARGET).log
+clean:	## Stop the application. Delete the binary and the log file.
+	@if pgrep -x $(TARGET) > /dev/null; then \
+		pkill $(TARGET); \
+	fi
+	@$(RM) $(TARGET) $(TARGET).log
 
-test:
+test:	## Test the application.
 	@curl http://localhost:9999 http://localhost:9999/health
+
+help:	## Show this help usage.
+	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
