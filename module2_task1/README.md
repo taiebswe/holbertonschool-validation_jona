@@ -12,4 +12,6 @@
 
 - test: You want to test it to ensure that it behaves as expected.
 
+- lint: Lint go lang code.
+
 - help: Display help message.
