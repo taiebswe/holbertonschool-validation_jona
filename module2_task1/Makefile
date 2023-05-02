@@ -24,7 +24,7 @@ test:	## Test the application.
 	@curl http://localhost:9999 http://localhost:9999/health
 
 lint:	## Lint go lang code
-	@golangci-lint run
+	golangci-lint run
 
 help:	## Show this help usage.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
