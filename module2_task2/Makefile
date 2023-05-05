@@ -24,7 +24,7 @@ test:	## Test the application.
 	@curl http://localhost:9999 http://localhost:9999/health
 
 unit-tests: ## Run unit tests
-	go test -v -short
+	go test -v -short -coverprofile=coverage-units.out
 
 lint:	## Lint go lang code
 	golangci-lint run
