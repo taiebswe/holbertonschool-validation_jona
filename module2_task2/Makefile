@@ -23,6 +23,9 @@ clean:	## Stop the application. Delete the binary and the log file.
 test:	## Test the application.
 	@curl http://localhost:9999 http://localhost:9999/health
 
+unit-tests: ## Run unit tests
+	go test -v -short
+
 lint:	## Lint go lang code
 	golangci-lint run
 
