@@ -12,6 +12,8 @@
 
 - test: You want to test it to ensure that it behaves as expected.
 
+- unit-tests: Run unit tests.
+
 - lint: Lint go lang code.
 
 - help: Display help message.
