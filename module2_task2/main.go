@@ -52,7 +52,6 @@ func HelloHandler(w http.ResponseWriter, r *http.Request) {
   nameParams := queryParams["name"]
 
   var name string
-  fmt.Printf("Len of nameParams: %d, value of nameParams: %s", len(nameParams), nameParams)
   switch len(nameParams) {
      case 0:
        // Set the name variable to there when there is no parameter "name" in the request
