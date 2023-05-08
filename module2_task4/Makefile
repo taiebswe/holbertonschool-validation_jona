@@ -21,7 +21,7 @@ clean:	## Stop the application. Delete the binary and the log file.
 	@if pgrep -x $(TARGET) > /dev/null; then \
 		pkill $(TARGET); \
 	fi
-	@$(RM) $(TARGET) $(TARGET).log $(COVERAGE)-units.out $(COVERAGE)-integrations.out *~
+	@$(RM) $(TARGET) $(TARGET).log $(COVERAGE)-units.out $(COVERAGE)-integrations.out dist/ *~
 
 test:	## Test the application.
 	$(MAKE) unit-tests
