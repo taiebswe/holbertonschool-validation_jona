@@ -14,6 +14,10 @@ build:	## Generate the source code of the application to a binary.
 run:	## Run the application in background by executing the binary.
 	./$(TARGET) >./$(TARGET).log 2>&1 &
 
+post:   ## Create a new blog post whose filename and title come from the environment variables POST_TITLE and POST_NAME
+        $(HUGO) new posts/$(POST_NAME).md
+        sed -i '2s/.*/title: "$(POST_TITLE)"/' content/posts/$(POST_NAME).md
+
 stop:	## Stop the application.
 	@pkill $(TARGET)
 
