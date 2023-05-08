@@ -1,7 +1,8 @@
 package main
 
 import (
-  "io"
+  //nolint:staticcheck
+  "io/ioutil"
   "net/http"
   "net/http/httptest"
   "testing"
@@ -69,7 +70,7 @@ func Test_server(t *testing.T) {
 
       // Check that the response body is what you expect.
       expectedBody := tt.body
-      bodyBytes, err := io.ReadAll(res.Body)
+      bodyBytes, err := ioutil.ReadAll(res.Body)
       res.Body.Close()
       if err != nil {
         t.Fatal(err)
