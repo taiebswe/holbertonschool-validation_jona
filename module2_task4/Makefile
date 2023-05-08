@@ -1,6 +1,6 @@
 GO=go
 TARGET=awesome-api
-RM=rm -f
+RM=rm -rf
 MAKE=make
 COVERAGE=coverage
 HUGO=hugo
