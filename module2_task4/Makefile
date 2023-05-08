@@ -3,11 +3,14 @@ TARGET=awesome-api
 RM=rm -f
 MAKE=make
 COVERAGE=coverage
+HUGO=hugo
 
 build:	## Generate the source code of the application to a binary.
 	$(MAKE) lint
 	$(GO) mod tidy
 	$(GO) build -o $(TARGET)
+	$(MAKE) check
+	$(HUGO)
 
 run:	## Run the application in background by executing the binary.
 	./$(TARGET) >./$(TARGET).log 2>&1 &
