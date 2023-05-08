@@ -29,7 +29,7 @@ unit-tests: ## Run unit tests
 	go test -v -short -coverprofile=$(COVERAGE)-units.out
 
 integration-tests: ## Run integration tests
-	go test --run Test_server -v -coverprofile=$(COVERAGE)-integrations.out
+	go test -v -coverprofile=$(COVERAGE)-integrations.out
 
 lint:	## Lint go lang code
 	golangci-lint run
