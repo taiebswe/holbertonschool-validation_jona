@@ -9,7 +9,7 @@ on:
 
 jobs:
   first_job:
-    runs-on: ubuntu:18.04
+    runs-on: ubuntu-18.04
     steps:
       - name: Clone the repo
         uses: actions/checkout@v3
