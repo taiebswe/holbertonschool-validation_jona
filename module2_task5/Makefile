@@ -6,9 +6,9 @@ COVERAGE=coverage
 HUGO=hugo
 
 build:	## Generate the source code of the application to a binary.
-	$(MAKE) lint
-	$(GO) mod tidy
-	$(MAKE) check && $(HUGO) && $(GO) build -o $(TARGET)
+	@$(MAKE) lint
+	@$(GO) mod tidy
+	@$(MAKE) check && $(HUGO) && $(GO) build -o $(TARGET)
 
 run:	## Run the application in background by executing the binary.
 	./$(TARGET) >./$(TARGET).log 2>&1 &
@@ -38,10 +38,10 @@ integration-tests: ## Run integration tests
 	go test -v -coverprofile=$(COVERAGE)-integrations.out
 
 lint:	## Lint go lang code
-	golangci-lint run
+	@golangci-lint run
 
 check:	## Lint markdonw source, check dead links
-	markdownlint content/**/*.md
+	@markdownlint content/**/*.md
 	find content -name \*.md -print0 | xargs -0 -n1 markdown-link-check
 
 validate:	## Validate the file dist/index.html using the command line Holberton’s W3C Validator.
