@@ -3,7 +3,7 @@ run-name: Module 3 task 0
 on:
   push:
     branches:
-      - '**'
+      - main
   schedule:
     - cron: '0 15 * * *'
 
