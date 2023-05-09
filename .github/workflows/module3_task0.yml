@@ -1,0 +1,18 @@
+name: module3_task0
+run-name: Module 3 task	0
+on:
+  push:
+    branches:
+      -	master
+  schedule:
+    - cron: '0 15 * * *'
+
+jobs:
+  first_job:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Clone the repo
+        uses: actions/checkout@v3
+      - name: Cd in the correct directory and make help
+        run: |
+          echo "Hello"
