@@ -1,5 +1,5 @@
 name: module3_task0
-run-name: ${{ github.actor }} is learning GitHub Actions
+run-name: Module 3 task 0
 on:
   push:
     branches:
