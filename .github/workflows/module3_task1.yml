@@ -1,0 +1,19 @@
+name: module3_task1
+run-name: module3_task1
+on:
+  schedule:
+    - cron: "0 15 * * *"
+  push:
+jobs:
+  first_job:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clone the repo
+        uses: actions/checkout@v3
+      - name: Cd in the correct directory and make help
+        run: |
+          cd module3_task0
+      - name: install missing tools for building
+        run: ./setup.sh
+      - name: Build the hugo website via the target build.
+        run: make build
