@@ -1,11 +1,9 @@
 name: module3_task0
 run-name: Module 3 task	0
 on:
-  push:
-    branches:
-      - "**"
   schedule:
     - cron: '0 15 * * *'
+  push:
 
 jobs:
   first_job:
