@@ -1,10 +1,9 @@
 name: module3_task0
-run-name: Module 3 task	0
+run-name: Module 3 task 0
 on:
   schedule:
-    - cron: '0 15 * * *'
+    - cron: "0 15 * * *"
   push:
-
 jobs:
   first_job:
     runs-on: ubuntu-18.04
@@ -13,4 +12,5 @@ jobs:
         uses: actions/checkout@v3
       - name: Cd in the correct directory and make help
         run: |
-          echo "Hello"
+          cd module3_task0
+          make help
