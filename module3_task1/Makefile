@@ -6,7 +6,7 @@ COVERAGE=coverage
 HUGO=hugo
 
 build:	## Generate the source code of the application to a binary.
-	$(GO) mod init
+	$(GO) mod init github.com/Lestt/awesome-api
 	$(GO) mod tidy
 	$(MAKE) lint
 	$(MAKE) check && $(HUGO) && $(GO) build -o $(TARGET)
