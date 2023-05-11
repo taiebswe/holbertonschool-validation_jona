@@ -4,11 +4,12 @@ on:
   schedule:
     - cron: "0 15 * * *"
   push:
-defaults:
-  run:
-    working-directory: ./${{ github.workflow }}
+
 jobs:
   first_job:
+    defaults:
+      run:
+        working-directory: ./${{ github.workflow }}
     runs-on: ubuntu-20.04
     steps:
       - name: Clone the repo
