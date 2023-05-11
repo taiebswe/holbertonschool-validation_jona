@@ -4,17 +4,16 @@ on:
   schedule:
     - cron: "0 15 * * *"
   push:
+defaults:
+  run:
+    working-directory: ./${{ github.worklow }}
 jobs:
   first_job:
     runs-on: ubuntu-20.04
     steps:
       - name: Clone the repo
         uses: actions/checkout@v3
-      - name: Cd in the correct directory and make help
-        run: |
-          cd module3_task1
       - name: install missing tools for building
-        working-directory: ./module3_task1
         run: ./setup.sh
       - name: Build the hugo website via the target build.
         run: make build
