@@ -14,6 +14,7 @@ jobs:
         run: |
           cd module3_task1
       - name: install missing tools for building
+        working-directory: ./module3_task1
         run: ./setup.sh
       - name: Build the hugo website via the target build.
         run: make build
