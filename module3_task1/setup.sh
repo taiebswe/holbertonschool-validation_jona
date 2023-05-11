@@ -10,4 +10,10 @@ curl -LO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${
 dpkg -i ${HUGO_BINARY}
 rm ${HUGO_BINARY}
 
+GOLANGCILINT_VERSION="1.36.0"
+curl --silent --show-error --location --output /tmp/golangci-lint.deb \
+     "https://github.com/golangci/golangci-lint/releases/download/v${GOLANGCILINT_VERSION}/golangci-lint-${GOLANGCILINT_VERSION}-linux-amd64.deb"
+dpkg -i /tmp/golangci-lint.deb
+rm -f /tmp/golangci-lint.deb
+
 exit $?
