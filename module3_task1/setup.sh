@@ -7,7 +7,7 @@ CGO_ENABLED=1
 GO11MODULES=on
 curl --silent --show-error --location --output /tmp/go.tgz \
      "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" \
-   && tar -C /usr/local -xzf /tmp/go.tgz \
+   && sudo tar -C /usr/local -xzf /tmp/go.tgz \
    && rm -f /tmp/go.tgz
 
 cp /usr/local/go/bin/go /usr/local/bin
