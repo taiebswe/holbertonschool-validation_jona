@@ -24,4 +24,6 @@
 
 - validate: Validate the file dist/index.html using the command line Holberton’s W3C Validator.
 
+- package: creates a zip archive of the the latest build and stores it under awesome-website.zip
+
 - help: Display help message.
