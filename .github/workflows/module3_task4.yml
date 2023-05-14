@@ -2,6 +2,7 @@ name: module3_task4
 run-name: module3_task4
 on:
   push:
+    branches: [main, master]
   schedule:
     - cron: '0 0 * * *'
   pull_request:
