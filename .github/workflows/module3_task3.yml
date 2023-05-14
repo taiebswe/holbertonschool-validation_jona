@@ -23,7 +23,7 @@ jobs:
           make integration-tests
           make unit-tests
           make package
-		  echo ${{github.ref}}
+          echo ${{ github.ref }}
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
