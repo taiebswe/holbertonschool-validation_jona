@@ -3,6 +3,7 @@
 ## What is in the archive and how to unarchive it
 
 The archive contains the latest build and the api binary.
+The archive can be found under either in uploads or releases if a tags is used v1.0.0
 
 ### To unarchive the package
 
@@ -16,7 +17,7 @@ To run the application use:
 
 ## How to customise where the logs are written
 
-TBC
+Logs are created by the github actions and stored in the respective runner
 
 ## How to quickly check the application is running
 
