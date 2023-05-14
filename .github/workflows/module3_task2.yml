@@ -1,0 +1,32 @@
+name: module3_task2
+run-name: module3_task2
+on:
+  schedule:
+    - cron: "0 15 * * *"
+  push:
+jobs:
+  first_job:
+    defaults:
+      run:
+        working-directory: ./${{ github.workflow }}
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone the repo
+        uses: actions/checkout@v3
+      - name: install missing tools for building
+        run: ./setup.sh
+      - name: Build the hugo website via the target build.
+        run: make build
+      - name: Integration tests
+        run: |
+          make validate
+          make integration-tests
+          make unit-tests
+          make package
+          make clean
+      - name: archive build
+        if: ${{ success()}}
+        uses: actions/upload-artifact@v3
+        with:
+          name: upload-package
+          path: module3_task2/awesome-website.zip
