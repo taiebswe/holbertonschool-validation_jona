@@ -9,6 +9,6 @@ apt-get install -y --no-install-recommends nodejs=14.*
 
 npm install --global \
   markdownlint-cli@0.26.0 \
-  markdown-link-check@3.8.6
+  markdown-link-check@3.8.6 2> /dev/null
 
 exit $?
