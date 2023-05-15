@@ -4,11 +4,12 @@ RM=rm -rf
 MAKE=make
 COVERAGE=coverage
 HUGO=hugo
-DOCKER=docker run
-#DOCKER_OPTIONS=
+DOCKER_OPTIONS=--volume=$(pwd):/app --workdir=/app
+DOCKER=docker run $(DOCKER_OPTIONS)
 DOCKER_IMAGE=golang:1.15.8-buster
 
 build:	## Generate the source code of the application to a binary.
+	$(DOCKER) $(DOCKER_IMAGE) ./setup.sh
 	$(MAKE) lint
 	$(DOCKER) $(DOCKER_IMAGE) $(GO) mod tidy
 	$(MAKE) check && $(HUGO) && $(DOCKER) $(DOCKER_IMAGE) $(GO) build -o $(TARGET)

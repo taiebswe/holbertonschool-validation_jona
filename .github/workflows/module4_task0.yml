@@ -43,7 +43,7 @@ jobs:
       - name: deploy
         uses: nwtgck/actions-netlify@v2.0
         with:
-          publish-dir: './module3_task5/dist'
+          publish-dir: './${{ github.workflow }}/dist'
           production-branch: master
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: '🎉 Published on'
