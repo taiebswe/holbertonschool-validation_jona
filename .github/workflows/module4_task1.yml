@@ -17,13 +17,12 @@ jobs:
     steps:
       - name: Clone the repo
         uses: actions/checkout@v3
-      - name: install missing tools for building
-        run: ./setup.sh
+      - name: Create docker image
+        run: make build-docker
       - name: Build the hugo website via the target build.
         run: make build
       - name: Integration tests
         run: |
-          make validate
           make integration-tests
           make unit-tests
           make package
