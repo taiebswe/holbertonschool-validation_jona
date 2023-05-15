@@ -5,10 +5,10 @@ sudo apt-get update && sudo apt-get install -y make curl
 ## Add official nodejs distribution apt repository
 curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
-sudo apt-get install -y --no-install-recommends nodejs=14.* \
+sudo apt-get install -y --no-install-recommends nodejs=14.*
   # Cleanup APT cache to ease extension of this image
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+  #&& apt-get clean \
+  #&& rm -rf /var/lib/apt/lists/*
 
 # Download Hugo binary
 HUGO_VERSION="0.84.0"
