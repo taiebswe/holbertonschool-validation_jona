@@ -2,6 +2,14 @@
 
 sudo apt-get update && sudo apt-get install -y make curl
 
+## Add official nodejs distribution apt repository
+curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+
+sudo apt-get install -y --no-install-recommends nodejs=14.* \
+  # Cleanup APT cache to ease extension of this image
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
 # Download Hugo binary
 HUGO_VERSION="0.84.0"
 HUGO_BINARY="hugo_extended_${HUGO_VERSION}_Linux-64bit.deb"
@@ -14,6 +22,8 @@ curl --silent --show-error --location --output /tmp/golangci-lint.deb \
      "https://github.com/golangci/golangci-lint/releases/download/v${GOLANGCILINT_VERSION}/golangci-lint-${GOLANGCILINT_VERSION}-linux-amd64.deb"
 sudo dpkg -i /tmp/golangci-lint.deb
 rm -f /tmp/golangci-lint.deb
+
+
 
 sudo npm install --global \
   markdownlint-cli@0.26.0 \
