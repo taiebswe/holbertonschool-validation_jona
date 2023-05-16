@@ -2,12 +2,14 @@ FROM golang:1.15.8-buster
 
 ENV PATH="/usr/local/go/bin:/opt/W3C-Validator:${PATH}"
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 # Install sudo
 RUN apt-get update && \
     apt-get -y --no-install-recommends install curl=* python3-pip=* \
 	&& rm -rf /var/lib/apt/lists/*
 
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+#SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN	curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 	&& apt-get install -y --no-install-recommends \
 	nodejs=14.* \
@@ -47,7 +49,8 @@ RUN curl --fail --silent --show-error --location --output /usr/local/bin/contain
     "https://storage.googleapis.com/container-structure-test/v${CST_VERSION}/container-structure-test-linux-amd64" \
   && sha256sum /usr/local/bin/container-structure-test | grep -q "${CST_SHA256}" \
   && chmod a+x /usr/local/bin/container-structure-test \
-  && container-structure-test version 2>&1 | grep -q "${CST_VERSION}"
-
+  && container-structure-test version 2>&1 | grep -q "${CST_VERSION}" \
+  && python3 -m pip install --no-cache-dir \
+  requests==2.* yamllint==1.*
 
 CMD ["/bin/bash"]

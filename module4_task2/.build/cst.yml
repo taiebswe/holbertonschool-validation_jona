@@ -1,3 +1,4 @@
+---
 tests:
   - name: Test if lint rule is supported
     command: make lint

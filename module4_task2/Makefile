@@ -47,6 +47,7 @@ lint:	## Lint go lang code
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) golangci-lint run
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) markdownlint DEPLOY.md
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) hadolint $(DOCKERFILE_PATH)/Dockerfile
+	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) yamllint $(DOCKERFILE_PATH)/cst.yml
 
 check:	## Lint markdonw source, check dead links
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) markdownlint content/**/*.md
