@@ -46,6 +46,7 @@ integration-tests: ## Run integration tests
 lint:	## Lint go lang code
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) golangci-lint run
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) markdownlint DEPLOY.md
+	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) hadolint $(DOCKERFILE_PATH)/Dockerfile
 
 check:	## Lint markdonw source, check dead links
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) markdownlint content/**/*.md
@@ -58,7 +59,7 @@ build-docker: ## Build docker images for the project
 	docker build -t $(DOCKER_IMAGE_BUILD_NAME) $(DOCKERFILE_PATH)
 
 docker-tests: ## Test the container
-	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) hadolint $(DOCKERFILE_PATH)/Dockerfile
+	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) container-structure-test test --image $(DOCKER_IMAGE_BUILD_NAME) $(DOCKERFILE_PATH)/cst.yml
 
 help:	## Show this help usage.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
