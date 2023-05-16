@@ -26,4 +26,6 @@
 
 - package: creates a zip archive of the the latest build and stores it under awesome-website.zip
 
+- build-docker: build docker image for testing.
+
 - help: Display help message.
