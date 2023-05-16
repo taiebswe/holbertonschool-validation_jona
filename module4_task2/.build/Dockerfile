@@ -4,7 +4,9 @@ ENV PATH="/usr/local/go/bin:/opt/W3C-Validator:${PATH}"
 
 # Install sudo
 RUN apt-get update && \
-    apt-get -y install curl python3-pip
+    apt-get -y --no-install-recommends install curl python3-pip \
+	&& rm -rf /var/lib/apt/lists/*
+
 
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 	&& apt-get install -y --no-install-recommends \
@@ -32,5 +34,22 @@ RUN rm -f /tmp/golangci-lint.deb
 RUN npm install --global \
   markdownlint-cli@0.26.0 \
   markdown-link-check@3.8.6
+
+ARG HADOLINT_VERSION=2.6.0
+ARG HADOLINT_SHA256="152e3c3375f26711650d4e11f9e382cf1bdf3f912d7379823e8fac4b1bce88d6"
+RUN curl --fail --silent --show-error --location --output /usr/local/bin/hadolint \
+    "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64" \
+  && sha256sum /usr/local/bin/hadolint | grep -q "${HADOLINT_SHA256}" \
+  && chmod a+x /usr/local/bin/hadolint \
+  && hadolint --version 2>&1 | grep -q "${HADOLINT_VERSION}"
+
+ARG CST_VERSION=1.10.0
+ARG CST_SHA256="72deeea26c990274725a325cf14acd20b8404251c4fcfc4d34b7527aac6c28bc"
+RUN curl --fail --silent --show-error --location --output /usr/local/bin/container-structure-test \
+    "https://storage.googleapis.com/container-structure-test/v${CST_VERSION}/container-structure-test-linux-amd64" \
+  && sha256sum /usr/local/bin/container-structure-test | grep -q "${CST_SHA256}" \
+  && chmod a+x /usr/local/bin/container-structure-test \
+  && container-structure-test version 2>&1 | grep -q "${CST_VERSION}"
+
 
 CMD ["/bin/bash"]

@@ -8,6 +8,7 @@ DOCKER_OPTIONS=--rm --tty --volume=`pwd`:/app --workdir=/app
 DOCKER=docker run $(DOCKER_OPTIONS)
 DOCKER_IMAGE=golang:1.15.8-buster
 DOCKER_IMAGE_BUILD_NAME=awesome:build
+DOCKERFILE_PATH=./.build
 
 build:	## Generate the source code of the application to a binary.
 	$(MAKE) lint
@@ -54,10 +55,10 @@ package:	## Create a zip file with the awesome-api binary and the dist/ director
 	zip -r awesome-website.zip awesome-api dist
 
 build-docker: ## Build docker images for the project
-	docker build -t $(DOCKER_IMAGE_BUILD_NAME) ./.build
+	docker build -t $(DOCKER_IMAGE_BUILD_NAME) $(DOCKERFILE_PATH)
 
 docker-tests: ## Test the container
-	echo "Hello"
+	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) hadolint $(DOCKERFILE_PATH)/Dockerfile
 
 help:	## Show this help usage.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
