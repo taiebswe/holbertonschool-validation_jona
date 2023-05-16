@@ -56,5 +56,8 @@ package:	## Create a zip file with the awesome-api binary and the dist/ director
 build-docker: ## Build docker images for the project
 	docker build -t $(DOCKER_IMAGE_BUILD_NAME) ./.build
 
+docker-tests: ## Test the container
+	echo "Hello"
+
 help:	## Show this help usage.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)

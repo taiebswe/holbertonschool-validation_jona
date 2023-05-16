@@ -28,4 +28,6 @@
 
 - build-docker: build docker image for testing.
 
+- docker-tests: testing the container built.
+
 - help: Display help message.
