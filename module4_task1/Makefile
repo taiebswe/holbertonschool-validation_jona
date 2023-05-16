@@ -54,7 +54,7 @@ package:	## Create a zip file with the awesome-api binary and the dist/ director
 	zip -r awesome-website.zip awesome-api dist
 
 build-docker: ## Build docker images for the project
-	@docker build --quiet -t $(DOCKER_IMAGE_BUILD_NAME) ./.build 2>&1
+	@docker build -t $(DOCKER_IMAGE_BUILD_NAME) ./.build >/dev/null 2>&1
 
 help:	## Show this help usage.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
