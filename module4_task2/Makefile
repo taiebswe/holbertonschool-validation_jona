@@ -58,7 +58,7 @@ build-docker: ## Build docker images for the project
 	docker build -t $(DOCKER_IMAGE_BUILD_NAME) $(DOCKERFILE_PATH)
 
 docker-tests: ## Test the container
-	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) hadolint --ignore DL3008 --ignore DL3059 --ignore DL4006 $(DOCKERFILE_PATH)/Dockerfile
+	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) hadolint $(DOCKERFILE_PATH)/Dockerfile
 
 help:	## Show this help usage.
 	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)

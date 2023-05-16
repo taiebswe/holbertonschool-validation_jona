@@ -4,36 +4,34 @@ ENV PATH="/usr/local/go/bin:/opt/W3C-Validator:${PATH}"
 
 # Install sudo
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install curl python3-pip \
+    apt-get -y --no-install-recommends install curl=* python3-pip=* \
 	&& rm -rf /var/lib/apt/lists/*
 
-
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+RUN	curl -sL https://deb.nodesource.com/setup_14.x | bash - \
 	&& apt-get install -y --no-install-recommends \
 	nodejs=14.* \
 	make=4.* \
 	# Cleanup APT cache to ease extension of this image
 	&& apt-get clean \
-  	&& rm -rf /var/lib/apt/lists/*
-
-RUN npm install -g npm@9.5.1
+  	&& rm -rf /var/lib/apt/lists/* \
+	&& npm install -g npm@9.5.1
 
 # Download Hugo binary
 ARG HUGO_VERSION="0.84.0"
 ARG HUGO_BINARY="hugo_extended_${HUGO_VERSION}_Linux-64bit.deb"
-RUN curl -LO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY}"
-RUN dpkg -i ${HUGO_BINARY}
-RUN rm ${HUGO_BINARY}
+RUN curl -LO "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO_BINARY}" \
+	&& dpkg -i ${HUGO_BINARY} \
+	&& rm ${HUGO_BINARY}
 
 ARG GOLANGCILINT_VERSION="1.52.2"
 RUN curl --silent --show-error --location --output /tmp/golangci-lint.deb \
-     "https://github.com/golangci/golangci-lint/releases/download/v${GOLANGCILINT_VERSION}/golangci-lint-${GOLANGCILINT_VERSION}-linux-amd64.deb"
-RUN dpkg -i /tmp/golangci-lint.deb
-RUN rm -f /tmp/golangci-lint.deb
-
-RUN npm install --global \
-  markdownlint-cli@0.26.0 \
-  markdown-link-check@3.8.6
+     "https://github.com/golangci/golangci-lint/releases/download/v${GOLANGCILINT_VERSION}/golangci-lint-${GOLANGCILINT_VERSION}-linux-amd64.deb" \
+	 && dpkg -i /tmp/golangci-lint.deb \
+	 && rm -f /tmp/golangci-lint.deb \
+	 && npm install --global \
+  	 	markdownlint-cli@0.26.0 \
+		markdown-link-check@3.8.6
 
 ARG HADOLINT_VERSION=2.6.0
 ARG HADOLINT_SHA256="152e3c3375f26711650d4e11f9e382cf1bdf3f912d7379823e8fac4b1bce88d6"
