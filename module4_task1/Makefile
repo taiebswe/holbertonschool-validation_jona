@@ -43,8 +43,8 @@ integration-tests: ## Run integration tests
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) sh -c "$(GO) test -v -coverprofile=$(COVERAGE)-integrations.out"
 
 lint:	## Lint go lang code
-	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) golangci-lint run
-	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) markdownlint DEPLOY.md
+	@$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) golangci-lint run
+	@$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) markdownlint DEPLOY.md
 
 check:	## Lint markdonw source, check dead links
 	$(DOCKER) $(DOCKER_IMAGE_BUILD_NAME) markdownlint content/**/*.md
